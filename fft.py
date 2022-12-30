@@ -84,7 +84,7 @@ def showData():
     # pandas dataframe to html table flask
     # uploaded_df_html = uploaded_df.to_html()
     full_filename = os.path.join(app.config['UPLOAD_FOLDER'], 'my_plot.png')
-    return render_template('/fft.html', user_image = full_filename)
+    return render_template('fft.html', user_image = full_filename)
  
 @app.route('/back')
 def back():
