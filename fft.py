@@ -45,7 +45,7 @@ def uploadFile():
  
 @app.route('/show_data')
 def showData():
-    with open('./staticFiles/uploads/sheets.csv', newline='') as csvfile:
+    with open(os.path.join('./staticFiles/uploads/sheets.csv'), newline='') as csvfile:
         list_data = list(csv.reader(csvfile))
 
         list_to_arr = np.array(list_data)
@@ -70,7 +70,7 @@ def showData():
     plt.xticks([]), plt.yticks([])
     plt.xlabel('Frequency')
     plt.ylabel('Magnitude')
-    file_name = app.config['UPLOAD_FOLDER'] + '/my_plot.png'
+    file_name = os.path.join(app.config['UPLOAD_FOLDER'] + '/my_plot.png')
     plt.savefig(file_name)
     # plt.show()
     # // end
@@ -84,11 +84,11 @@ def showData():
     # pandas dataframe to html table flask
     # uploaded_df_html = uploaded_df.to_html()
     full_filename = os.path.join(app.config['UPLOAD_FOLDER'], 'my_plot.png')
-    return render_template('show_csv_data.html', user_image = full_filename)
+    return render_template(os.path.join('show_csv_data.html'), user_image = full_filename)
  
 @app.route('/back')
 def back():
     return render_template('fft.html')
 
 if __name__=='__main__':
-    app.run(host='127.0.0.1', port=5004, debug = True)
+    app.run(host='127.0.0.1', port=5005, debug = True)
